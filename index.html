@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Virtale</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <fill-circle player
+      x = 50
+      y = 50
+      radius = 50
+      color = red
+    >
+
+    <set-var advance = false>
+
+    <for-ever>
+      if (this.advance) {
+        this.player.x += 1
+      }
+    </for-ever>
+
+    <set-key Enter norepeat>
+      this.advance = !this.advance
+    </set-key>
+
+    <set-key Tab norepeat>
+      if (this.player.color == 'red') {
+        this.player.color = 'green'
+      } else {
+        this.player.color = 'red'
+      }
+    </set-key>
+
+    <set-key +>
+      this.player.radius += 10
+    </set-key>
+
+    <set-key ->
+      this.player.radius -= 10
+    </set-key>
+     
+    <set-key ArrowUp>
+      this.player.y -= 10
+    </set-key>
+
+    <set-key ArrowDown>
+      this.player.y += 10
+    </set-key>
+
+    <set-key ArrowLeft>
+      this.player.x -= 10
+    </set-key>
+
+    <set-key ArrowRight>
+      this.player.x += 10
+    </set-key>
+
+    <script src="virtale.js"></script>
+  </body>
+</html>
