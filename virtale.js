@@ -1,3 +1,7 @@
+'use strict';
+
+window.onerror = alert;
+
 const canvas = document.createElement('canvas');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -25,6 +29,7 @@ const gameLoop = () => {
       entity.update();
     }
   }
+
   window.requestAnimationFrame(gameLoop);
 };
 
@@ -107,11 +112,13 @@ class SetVar extends HTMLElement {
   }
 
   connectedCallback() {
-    game[this.attributes[0].name] = Function(`return ${this.attributes[0].value}`).bind(game)();
+    for (const attr of this.attributes) {
+      game[attr.name] = Function(`return ${attr.value}`).bind(game)();
+    }
   }
 }
 
-class ForEver extends HTMLElement {
+class GameLoop extends HTMLElement {
   constructor() {
     super();
 
@@ -157,5 +164,5 @@ class SetKey extends HTMLElement {
 customElements.define('set-var', SetVar);
 customElements.define('fill-rect', FillRect);
 customElements.define('fill-circle', FillCircle);
-customElements.define('for-ever', ForEver);
+customElements.define('game-loop', GameLoop);
 customElements.define('set-key', SetKey);
